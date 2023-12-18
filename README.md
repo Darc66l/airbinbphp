@@ -27,4 +27,4 @@
 1. Клонируйте репозиторий:
 
    ```bash
-   git clone https://github.com/your_username/real-estate-website.git
+   git clone https://github.com/Darc66l/airbinbphp.git
