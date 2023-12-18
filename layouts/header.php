@@ -2,16 +2,6 @@
 session_start();
 require_once("../inc/database.php");
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../styles/style.css">
-    <title>Document</title>
-</head>
-
-<body>
     <header>
         <nav>
             <ul>
@@ -30,6 +20,5 @@ require_once("../inc/database.php");
             </ul>
         </nav>
     </header>
-</body>
 
 </html>

@@ -1,4 +1,4 @@
-body {
+  body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -8,7 +8,12 @@ body {
     background-color: #333;
     color: #fff;
     padding: 10px 0;
+    position: fixed;
+    z-index: 2;
+    width: 100%; /* Добавьте эту строку для установки ширины в 100% */
+    margin-bottom: 20px;
   }
+  
   
   nav ul {
     list-style: none;
@@ -26,11 +31,7 @@ body {
     color: #fff;
     font-weight: bold;
   }
-  main
-  {
-    margin-top: 10px;
-   
-  }
+
   .swiper {
     width: 600px;
     height: 300px;
@@ -49,24 +50,68 @@ body {
   .ads {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 20px 0;
+    justify-content: space-between;
+    margin: 10px 250px;
   }
   
   .ad {
-    width: 30%;
+    width: 200px;
     border: 1px solid #ccc;
+    border-radius: 20px;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+    height: 200px;
+    box-shadow: 3px 5px 5px black;
   }
   
   footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
-    position: fixed;
     bottom: 0;
     width: 100%;
+
+  }
+  .ads .ad:nth-child(1) {
+    background: linear-gradient(to right, #3494e6, #ec6ead);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .ads .ad:nth-child(2) {
+    background: linear-gradient(to right, #fc4a1a, #f7b733);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .ads .ad:nth-child(3) {
+    background: linear-gradient(to right, #bc4e9c, #f80759);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .ads .ad:nth-child(4) {
+    background: linear-gradient(to right, #2c3e50, #bdc3c7);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .ads .ad:nth-child(5) {
+    background: linear-gradient(to right, #56ccf2, #2f80ed);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .ads .ad:nth-child(6) {
+    background: linear-gradient(to right, #00c6fb, #005bea);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
   }
   
