@@ -2,6 +2,7 @@
 session_start();
 require_once("../inc/database.php");
 ?>
+
     <header>
         <nav>
             <ul>
@@ -10,11 +11,12 @@ require_once("../inc/database.php");
                 <li><a href="login.php">Вход</a></li>
                 <li><a href="About.php">О нас</a></li>
                 <li><a href="Contacts.php">Контакты</a></li>
+                <li><a href="Upload.php">ПОдать Объявление</a></li>
                 <?
                 if (isset($_SESSION['sessionId'])) {
                     echo "You are logged in as " . $_SESSION['sessionId'];
                 } else {
-                    echo "Home";
+                    echo "You are logged in as Guest";
                 }
                 ?>
             </ul>

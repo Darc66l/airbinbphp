@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../styles/log-reg.css">
-    <title>Document</title>
+    <title>Регистрация</title>
+    <?
+    include("../inc/head.php")
+    ?>
 </head>
 <body> <?php
       include_once("header.php")

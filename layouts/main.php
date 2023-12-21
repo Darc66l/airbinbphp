@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <link rel="stylesheet" href="../styles/style.css">
+  <?
+  include("../inc/head.php")
+    ?>
 
 </head>
 
@@ -16,16 +19,39 @@
   include_once("header.php")
     ?>
   <main>
+    <?
 
+    include("../inc/database.php");
+
+    $sql = "SELECT * FROM uploads  ORDER BY id DESC LIMIT 3";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+    ?>
+        <div class="swiper-slide">
+          <img src="../assets/<?= $row['image_name'] ?>" alt="<?= $row['image_name'] ?>">
+        </div>
+    <?php
+      }
+    } else {
+      echo "0 results";
+    }
+    ?>
     <!-- Slider main container -->
     <div class="swiper">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
-        <div class="swiper-slide"><img src="../assets/hot-take1.jpeg" alt="hot-take1"></div>
-        <div class="swiper-slide"><img src="../assets/hot-take2.jpeg" alt="hot-take2"></div>
-        <div class="swiper-slide"><img src="../assets/hot-take3.jpeg" alt="hot-take3">3</div>
-        ...
+        <div class="swiper-slide">
+          <img src="../assets/hot-take1.jpeg" alt="hot-take1">
+        </div>
+        <div class="swiper-slide">
+          <img src="../assets/hot-take2.jpeg" alt="hot-take2">
+        </div>
+        <div class="swiper-slide">
+          <img src="../assets/hot-take3.jpeg" alt="hot-take3">
+        </div>
       </div>
       <!-- If we need pagination -->
       <div class="swiper-pagination"></div>
@@ -48,17 +74,17 @@
   </footer>
 
   <script>
-     var swiperad = new Swiper(".mySwiper", {
-    slidesPerView: 3,
-    grid: {
-      rows: 2,
-    },
-    spaceBetween: 30,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
+    var swiperad = new Swiper(".mySwiper", {
+      slidesPerView: 3,
+      grid: {
+        rows: 2,
+      },
+      spaceBetween: 30,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
     const swiper = new Swiper('.swiper', {
       // Optional parameters
       direction: 'horizontal',
@@ -76,7 +102,7 @@
       },
 
       // And if we need scrollbar
-    
+
     });
   </script>
 

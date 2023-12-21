@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/log-reg.css">
-   
-    <title>Document</title>
+    <title>Логин</title>
+    <?
+    include("../inc/head.php")
+    ?>
 </head>
 <body>
 <?php
