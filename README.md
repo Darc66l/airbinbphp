@@ -7,8 +7,8 @@
 - [Главная](/layouts/main.php)
 - [Регистрация](/layouts/register.php)
 - [Вход](/layouts/login.php)
-- [О нас](#)
-- [Контакты](#)
+- [О нас](/layouts/about.php)
+- [Контакты](/layouts/Contacts.php)
 
 ## Новости
 

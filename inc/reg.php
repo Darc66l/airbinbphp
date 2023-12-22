@@ -1,25 +1,13 @@
 <?php
-
 if (isset($_POST['submit'])) {
-    //Add database connection
     require 'database.php';
 
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirmPass = $_POST['confirmPassword'];
 
-    if (empty($username) || empty($password) || empty($confirmPass)) {
-        header("Location: ../register.php?error=emptyfields&username=".$username);
-        exit();
-    } elseif (!preg_match("/^[a-zA-Z0-9]*/", $username)) {
-        header("Location: ../register.php?error=invalidusername&username=".$username);
-        exit();
-    } elseif($password !== $confirmPass) {
-        header("Location: ../register.php?error=passwordsdonotmatch&username=".$username);
-        exit();
-    }
+#elseif (!preg_match("/^[a-zA-Z0-9]*/", $username)) {
 
-    else {
         $sql = "SELECT username FROM users WHERE username = ?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -37,21 +25,38 @@ if (isset($_POST['submit'])) {
             } else {
                 $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
                 $stmt = mysqli_stmt_init($conn);
-                if (!mysqli_stmt_prepare($stmt, $sql)) {
-                    header("Location: ../register.php?error=sqlerror");
+                if (!mysqli_stmt_prepare($stmt, $sql)) { 
+                    include_once('../layouts/register.php');
+                    echo "<h4>Ошибка базы данных</h4>";
                     exit();
                 } else {
                     $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
                     mysqli_stmt_bind_param($stmt, "ss", $username, $hashedPass);
                     mysqli_stmt_execute($stmt);
+
+                    // Получить только что добавленного пользователя
+                    $sql = "SELECT id, username FROM users WHERE username = ?";
+                    $stmt = mysqli_stmt_init($conn);
+                    if (mysqli_stmt_prepare($stmt, $sql)) {
+                        mysqli_stmt_bind_param($stmt, "s", $username);
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_store_result($stmt);
+                        mysqli_stmt_bind_result($stmt, $userId, $username);
+                        mysqli_stmt_fetch($stmt);
+
+                        // Начать сессию и сохранить идентификатор и имя пользователя
+                        session_start();
+                        $_SESSION['sessionId'] = $userId;
+                        $_SESSION['sessionUser'] = $username;
                         header("Location: ../layouts/main.php?success=registered");
                         exit();
+                    } else {
+                        include_once('../layouts/register.php');
+                        echo "<h4>Ошибка базы данных</h4>";
+                    }
                 }
-                
             }
         }
     }
-    
-}
 ?>
