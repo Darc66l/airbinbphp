@@ -20,9 +20,9 @@
   <p>No account? <a href="register.php">Register here!</a>
   </p>
   <form action="../inc/log.php" method="post">
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit" name="submit">Login</button>
+    <input class="inputs-form" type="text" name="username" placeholder="Username" required>
+    <input class="inputs-form" type="password" name="password" placeholder="Password" required>
+    <button class="submit-btn" type="submit" name="submit">Login</button>
   </form>
 </div>
 

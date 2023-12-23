@@ -5,99 +5,95 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Сдача и аренда жилья</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="../styles/slideshow.css">
   <link rel="stylesheet" href="../styles/style.css">
   <link rel="stylesheet" href="../styles/header.css">
-  <?
+ <?
   include("../inc/head.php")
     ?>
 
 </head>
 
 <body>
-  <?php
-  include_once("header.php")
-    ?>
+<?php include_once("header.php"); ?>
   <main>
-    <?
-
+    <?php
     include("../inc/database.php");
 
     $sql = "SELECT * FROM test  ORDER BY id DESC LIMIT 3";
     $result = $conn->query($sql);
-?>
+    $result2 = $conn->query($sql);
+    $row2 = $result2->fetch_assoc();
+    $maxid = $row2['id'];
 
-    <!-- Slider main container -->
-    <div class="swiper">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-        <!-- Slides -->
-    <?    
-    if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
     ?>
-        <div class="swiper-slide">
-          <img src="<?= $row['image_path'] ?>" alt="<?= $row['image_name'] ?>">
-        </div>
-        <?php
+
+    <div class="slideshow-container">
+      <?php
+      if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          $maxid = $row['id'];
+          ?>
+          <a href="single-house.php?id=<?= $row['id'] ?>">
+            <div class="mySlides fade">
+              <div class="numbertext">
+                <?= $row['id'] - $maxid + 1 ?> / 3
+              </div>
+              <img src="<?= $row['image_path'] ?>" alt="<?= $row['image_name'] ?>">
+            </div>
+          </a>
+          <?php
+        }
+      } else {
+        echo "0 results";
       }
-    } else {
-      echo "0 results";
-    }
-    ?>
-      </div>
-      <!-- If we need pagination -->
-      <div class="swiper-pagination"></div>
-
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-
-
-    </div>
-    <!-- Объявления -->
-    <?php
-    include("ads.php")
       ?>
+
+      <a class="prev" onclick="plusSlides(-1)">❮</a>
+      <a class="next" onclick="plusSlides(1)">❯</a>
+    </div>
+
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
+    <?php include("ads.php"); ?>
   </main>
 
-  <!-- Footer с CSS стилями -->
   <footer>
     &copy; 2023 Сдача и аренда жилья. Все права защищены.
   </footer>
 
   <script>
-    var swiperad = new Swiper(".mySwiper", {
-      slidesPerView: 3,
-      grid: {
-        rows: 2,
-      },
-      spaceBetween: 30,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-    const swiper = new Swiper('.swiper', {
-      // Optional parameters
-      direction: 'horizontal',
-      loop: true,
+let slideIndex = 1;
+showSlides(slideIndex);
 
-      // If we need pagination
-      pagination: {
-        el: '.swiper-pagination',
-      },
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
 
-      // Navigation arrows
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
 
-      // And if we need scrollbar
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
 
-    });
   </script>
 
 </body>

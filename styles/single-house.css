@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding-top: 125px;
+    padding-top: 40px;
     flex-wrap: wrap;
     color: #ede7e5;
 }
@@ -47,5 +47,4 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 10px;
 }

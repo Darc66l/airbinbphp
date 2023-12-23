@@ -40,7 +40,7 @@ div{
     text-align: center;
     color:#f2f2f2;
 }
-input
+.inputs-form
 {
     display: block;
     margin: 20px auto;
@@ -50,7 +50,7 @@ input
     height: 30px;
     background-color: #F2F2F2;
 }
-button
+.submit-btn
 {
     width: 200px;
     height: 40px;
@@ -59,9 +59,5 @@ button
 }
 .inputer{
     margin: 20px auto;
-    text-align: center;
-    box-shadow: 0 0 10px #666;
-    width: 240px;
-    height: 30px;
-    background-color: #F2F2F2;
 }
+
