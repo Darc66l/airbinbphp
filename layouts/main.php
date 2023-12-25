@@ -32,12 +32,11 @@
       <?php
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-          $maxid = $row['id'];
           ?>
           <a href="single-house.php?id=<?= $row['id'] ?>">
             <div class="mySlides fade">
               <div class="numbertext">
-                <?= $row['id'] - $maxid + 1 ?> / 3
+                <?= $maxid -  $row['id'] + 1?> / 3
               </div>
               <img src="<?= $row['image_path'] ?>" alt="<?= $row['image_name'] ?>">
             </div>

@@ -17,12 +17,12 @@
   <h1>Register</h1>
   <p>Already have an account? <a href="login.php">Log In Here!</a>
   </p>
-  <formaction="../inc/reg.php" method="post">
+  <form action="../inc/reg.php" method="post">
     <input class="inputs-form"  type="text" name="username" placeholder="Username" required>
     <input class="inputs-form" type="password" name="password" placeholder="Password" required>
     <input class="inputs-form" type="password" name="confirmPassword" placeholder="Confirm Password" required>
     <button class="submit-btn" type="submit" name="submit">Register</button>
-  </formaction=>
+  </form>
 </div>
 
 </body>
