@@ -61,3 +61,8 @@ div{
     margin: 20px auto;
 }
 
+.error
+{
+    color: red;
+    text-align: center;
+}

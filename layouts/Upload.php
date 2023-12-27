@@ -27,7 +27,7 @@ if (!isset($_SESSION['sessionId'])) {
     <div>
   <h1>Upload images</h1>
   </p>
-  <form action="../inc/upload-inc.php" method="post"enctype="multipart/form-data">
+  <form action="../inc/upload-inc.php" method="post" enctype="multipart/form-data">
         <label for="image">Выберите изображение:</label>
         <input class="inputer" type="file" name="image" id="image" accept="image/*" required>
     <input class="inputs-form" type="text" name="name" placeholder="Название вашего дома" required>

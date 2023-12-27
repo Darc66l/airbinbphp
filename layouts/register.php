@@ -15,7 +15,7 @@
     ?>
     <div>
   <h1>Register</h1>
-  <p>Already have an account? <a href="login.php">Log In Here!</a>
+  <p>Already have an account? <a href="../layouts/login.php">Log In Here!</a>
   </p>
   <form action="../inc/reg.php" method="post">
     <input class="inputs-form"  type="text" name="username" placeholder="Username" required>

@@ -36,7 +36,7 @@
                     <?php
                     echo '<h1>' . $row['name'] . '</h1>';
                     echo '<h4>' . $row['description'] . '</h4>';
-                    echo '<p><strong>Price:</strong> ' . $row['price'] . '</p>';
+                    echo '<p><strong>Price:</strong> ' . $row['price'] . ' за ночь </p>';
                     echo '<p><strong>Contact:</strong> ' . $row['contact_email'] . '</p>';
                     ?>
                 </div>

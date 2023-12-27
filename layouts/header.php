@@ -16,17 +16,17 @@ if (isset($_POST['logout'])) {
         <ul>
             <form class="header-wrap"  method="post" action="">
                 <div class="links">
-                <li><a href="main.php">Главная</a></li>
+                <li><a href="../layouts/main.php">Главная</a></li>
                 <?
                 if (!isset($_SESSION['sessionId'])) { ?>
                     <li><a href="../layouts/register.php">Регистрация</a></li>
                     <li><a href="../layouts/login.php">Вход</a></li>
                 <? } else {
                     ?>
-                    <li><a href="Upload.php">Подать Объявление</a></li>
+                    <li><a href="../layouts/Upload.php">Подать Объявление</a></li>
                 <? } ?>
-                <li><a href="About.php">О нас</a></li>
-                <li><a href="Contacts.php">Контакты</a></li>
+                <li><a href="../layouts/About.php">О нас</a></li>
+                <li><a href="../layouts/Contacts.php">Контакты</a></li>
                 </div>
                 <div class="head-login">
                 <?

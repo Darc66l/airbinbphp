@@ -6,12 +6,16 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $confirmPass = $_POST['confirmPassword'];
 
-#elseif (!preg_match("/^[a-zA-Z0-9]*/", $username)) {
-
+    if ($password != $confirmPass) {
+        include_once("../layouts/register.php");
+        echo '<h4 class="error">Пароли не совпадают</h4>';
+        exit();
+    } else {
         $sql = "SELECT username FROM users WHERE username = ?";
         $stmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: ../register.php?error=sqlerror");
+        if (!mysqli_stmt_prepare($stmt, $sql)) { 
+            include_once("../layouts/register.php");
+            echo '<h4 class="error">Ошибка базы данных</h4>';
             exit();
         } else {
             mysqli_stmt_bind_param($stmt, "s", $username);
@@ -20,14 +24,15 @@ if (isset($_POST['submit'])) {
             $rowCount = mysqli_stmt_num_rows($stmt);
 
             if ($rowCount > 0) {
-                header("Location: ../register.php?error=usernametaken");
+                include_once("../layouts/register.php");
+                echo '<h4 class="error">Пользователь с таким именем уже существует</h4>';
                 exit();
             } else {
                 $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
                 $stmt = mysqli_stmt_init($conn);
-                if (!mysqli_stmt_prepare($stmt, $sql)) { 
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
                     include_once('../layouts/register.php');
-                    echo "<h4>Ошибка базы данных</h4>";
+                    echo '<h4 class="error">Неверный пароль</h4>';
                     exit();
                 } else {
                     $hashedPass = password_hash($password, PASSWORD_DEFAULT);
@@ -53,10 +58,11 @@ if (isset($_POST['submit'])) {
                         exit();
                     } else {
                         include_once('../layouts/register.php');
-                        echo "<h4>Ошибка базы данных</h4>";
+                        echo '<h4 class="error">Ошибка базы данных</h4>';
                     }
                 }
             }
         }
     }
+}
 ?>

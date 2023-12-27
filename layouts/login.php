@@ -17,7 +17,7 @@
     ?>
     <div>
   <h1>Login</h1>
-  <p>No account? <a href="register.php">Register here!</a>
+  <p>No account? <a href="../layouts/register.php">Register here!</a>
   </p>
   <form action="../inc/log.php" method="post">
     <input class="inputs-form" type="text" name="username" placeholder="Username" required>

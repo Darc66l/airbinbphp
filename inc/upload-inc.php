@@ -9,25 +9,6 @@ if (isset($_POST['submit'])) {
     require 'database.php';
     require 'upload-img.php';
     
-        if (empty($name)) {
-            $error .= "Введите название вашего дома. ";
-        }
-
-        if (empty($desc)) {
-            $error .= "Введите описание. ";
-        }
-
-        if (empty($price)) {
-            $error .= "Введите цену. ";
-        }
-
-        if (empty($email)) {
-            $error .= "Введите ваш email. ";
-        }
-
-        if (!empty($error)) {
-            echo "<h1>$error</h1>";
-        }else {
             // Если все в порядке, попробуйте загрузить файл
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                 echo "Файл " . htmlspecialchars(basename($_FILES["image"]["name"])) . " был успешно загружен на сервер.<br>";
@@ -38,20 +19,24 @@ if (isset($_POST['submit'])) {
     
                 if ($conn->query($sql) === TRUE) {
                     echo "Данные успешно сохранены в базе данных.<br>";
+                    header("Location: ../inc/uploaded.php");
                     exit;
                 } else {
-                    echo "Ошибка при загрузке файла в базу данных. <br> Ошибка при сохранении данных: " . $conn->error;
+                    
+                    include_once('../inc/upload.php');
+                    echo '<h3 class="error">Ошибка при загрузке файла в базу данных. <br> Ошибка при сохранении данных: </h3>' . $conn->error;
                     exit;
                 }
             } else {
-                echo "Извините, произошла ошибка при загрузке вашего файла.<br>";
+                include_once('../inc/upload.php');
+                echo '<h3 class="error"> Извините, произошла ошибка при загрузке вашего файла</h3>.<br>';
                 exit;
             }
         
     }
-}   
 else {
+           include_once('../inc/upload.php');
            echo "Доступ к бд закрыт. ";
-            exit();
+           exit();
         }
     ?>

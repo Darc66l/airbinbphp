@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
            include_once('../layouts/login.php');
-            echo "<h4>Ошибка базы данных</h4>";
+           echo '<h4 class="error">Ошибка Базы данных</h4>';
             exit();
         } else {
             mysqli_stmt_bind_param($stmt, "s", $username);
@@ -22,23 +22,22 @@ if (isset($_POST['submit'])) {
                 $passCheck = password_verify($password, $row['password']);
                 if ($passCheck == false) {
                     include_once('../layouts/login.php');
-                    echo "<h4>Неверный пароль</h4>";
+                    echo '<h4 class="error">Неверный пароль</h4>';
                     exit();
                 } elseif ($passCheck == true) {
                     session_start();
                     $_SESSION['sessionId'] = $row['id'];
                     $_SESSION['sessionUser'] = $row['username'];
                     header("Location: ../layouts/main.php?success=loggedin");
-                    echo "<h4>Неверный пароль</h1>";
                     exit();
-                } else {
-                    header("Location: ../layouts/login.php?error=wrongpass");
-                    
+                } else { 
+                    include_once("../layouts/register.php");
+                    echo '<h4 class="error">Неверный пароль</h4>';
                     exit();
                 }
             } else {
                 include_once('../layouts/login.php');
-                echo '<h4>Нет такого пользователя</h4>';
+                echo '<h4 class="error">Пользователь с таким именем не найден</h4>';
                 exit();
             }
         }
@@ -47,6 +46,7 @@ if (isset($_POST['submit'])) {
     }  
 else {
             header("Location: ../layouts/login.php?error=accessforbidden");
+            echo '<h4 class="error">Доступ Запрещён</h4>';
             exit();
         }
     ?>
